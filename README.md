@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jupiter - The King of Planets
 
-## Getting Started
+A comprehensive web application exploring Jupiter, the largest planet in our solar system. Built with Next.js, TypeScript, and Tailwind CSS, this project offers an immersive journey through Jupiter's fascinating features, from its massive scale to its Great Red Spot and extensive moon system.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🏠 Homepage
+- Stunning hero section with animated Jupiter visualization
+- Interactive scroll-based animations
+- Comprehensive overview of Jupiter's key features
+- Responsive design with Jupiter-inspired color scheme
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 📊 Data Visualization (`/data`)
+- Interactive Jupiter statistics and measurements
+- Atmospheric composition breakdown
+- Clickable data cards with detailed information
+- Modal popups for in-depth exploration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🌐 3D Interactive Model (`/3d`)
+- Interactive rotating Jupiter visualization
+- Clickable surface features (Great Red Spot, bands, polar regions)
+- Manual rotation control
+- Real-time feature information
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🌙 Moon System (`/moons`)
+- Complete catalog of Jupiter's 95 known moons
+- Detailed information about the Galilean moons
+- Filterable moon database (Galilean, inner, outer moons)
+- Interactive moon cards with discovery history
 
-## Learn More
+### 🌀 Great Red Spot (`/great-red-spot`)
+- Live storm simulation
+- Historical timeline from 1665 to present
+- Detailed storm characteristics
+- Scientific explanations of the phenomenon
 
-To learn more about Next.js, take a look at the following resources:
+### 🌤️ Weather & Atmosphere (`/weather`)
+- Atmospheric layer breakdown
+- Weather phenomena exploration
+- Extreme weather statistics
+- Composition analysis
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🚀 Space Missions (`/missions`)
+- Complete history of Jupiter exploration
+- Mission timeline from 1972 to present
+- Key discoveries and achievements
+- Interactive mission cards
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technology Stack
 
-## Deploy on Vercel
+- **Framework**: Next.js 16.1.6
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Components**: Custom React components
+- **Animations**: CSS animations and transitions
+- **Responsive**: Mobile-first design
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Design System
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application uses a Jupiter-inspired color palette:
+- **Primary**: Orange and red tones (Jupiter's bands)
+- **Secondary**: Purple and blue (space atmosphere)
+- **Accent**: Yellow (highlights and features)
+- **Background**: Deep space blues and blacks
+
+## 🚀 Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📱 Responsive Design
+
+The application is fully responsive and optimized for:
+- Desktop (1920x1080 and above)
+- Tablet (768x1024 and above)
+- Mobile (375x667 and above)
+
+## 🌟 Interactive Features
+
+- **Scroll-based animations**: Jupiter rotates as you scroll
+- **Hover effects**: Interactive cards and buttons
+- **Modal windows**: Detailed information popups
+- **Navigation**: Sticky header with mobile menu
+- **Smooth transitions**: Page-to-page navigation
+
+## 📚 Educational Content
+
+Each section provides scientifically accurate information about:
+- Jupiter's physical characteristics
+- Atmospheric composition and weather
+- Moon system and orbital mechanics
+- Space exploration history
+- Scientific discoveries and research
+
+## 🔬 Scientific Accuracy
+
+All data and information presented in this application is based on:
+- NASA and ESA mission data
+- Peer-reviewed scientific research
+- Current astronomical observations
+- Latest space mission findings
+
+---
+
+Built with ❤️ for space enthusiasts and curious minds exploring our solar system's giant.

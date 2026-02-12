@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a1a;
+  --foreground: #e8e8f0;
+  --jupiter-orange: #d4a574;
+  --jupiter-brown: #8b6f47;
+  --jupiter-red: #c8556d;
+  --jupiter-white: #f5e6d3;
+  --space-dark: #020817;
+  --space-blue: #1e3a8a;
 }
 
 @theme inline {
@@ -14,8 +20,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a1a;
+    --foreground: #e8e8f0;
   }
 }
 
@@ -23,4 +29,55 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background-image: 
+    radial-gradient(ellipse at top, #1e3a8a 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, #8b6f47 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, #c8556d 0%, transparent 50%),
+    linear-gradient(180deg, #020817 0%, #0a0a1a 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.jupiter-gradient {
+  background: linear-gradient(135deg, #d4a574, #8b6f47, #c8556d, #f5e6d3);
+}
+
+.jupiter-glow {
+  box-shadow: 0 0 60px rgba(212, 165, 116, 0.3),
+              0 0 100px rgba(139, 111, 71, 0.2),
+              inset 0 0 20px rgba(245, 230, 211, 0.1);
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 40px 70px, white, transparent),
+    radial-gradient(1px 1px at 50px 50px, white, transparent),
+    radial-gradient(1px 1px at 80px 10px, white, transparent),
+    radial-gradient(2px 2px at 130px 80px, white, transparent),
+    radial-gradient(1px 1px at 110px 120px, white, transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.3;
+  animation: twinkle 10s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.jupiter-orbit {
+  animation: rotate 60s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
