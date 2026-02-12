@@ -1,4 +1,4 @@
-name: DevSecOps CI/CD
+name: Security Scan & Report
 
 on:
   push:
@@ -9,67 +9,32 @@ on:
       - main
 
 jobs:
-  build-and-lint:
+  security:
+    name: Security Scan
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      # 1. Checkout the repository
+      - name: Checkout Code
         uses: actions/checkout@v3
 
+      # 2. Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'  # Use your Node.js version
 
+      # 3. Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Run ESLint (warnings only)
-        run: npm run lint || echo "Lint warnings detected but ignoring build failure"
+      # 4. Run npm audit to check for vulnerabilities
+      - name: Run Security Scan
+        run: npm audit --json > audit-report.json
 
-      - name: Run TypeScript check
-        run: npx tsc --noEmit
-
-      - name: Run unit tests (if any)
-        run: npm test || echo "No tests found"
-
-  snyk-scan:
-    needs: build-and-lint
-    runs-on: ubuntu-latest
-    if: secrets.SNYK_TOKEN != ''
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      # 5. Upload the report as an artifact
+      - name: Upload Security Report
+        uses: actions/upload-artifact@v3
         with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run Snyk Security Scan
-        uses: snyk/actions/node@master
-        with:
-          command: test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-  deploy-vercel:
-    needs: [build-and-lint, snyk-scan]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v21
-        with:
-          vercel-token: ${{ secrets.vcp_1rvS2FxWmynMBwmjND7y6n0JR6x6rFLNzlGPRgvpSY7naqKWZd3qOIT8 }}
-          vercel-org-id: ${{ secrets.ls-projects-33dcbaf7 }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
-          prod: true
+          name: security-report
+          path: audit-report.json
