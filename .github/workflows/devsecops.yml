@@ -59,11 +59,13 @@ jobs:
           path: security-report.html
 
       # 8️⃣ Deploy to Vercel (ONLY if everything above passed)
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
-          vercel-token: ${{ secrets.vcp_1rvS2FxWmynMBwmjND7y6n0JR6x6rFLNzlGPRgvpSY7naqKWZd3qOIT8 }}
-          vercel-org-id: ${{ secrets.ls-projects-33dcbaf7 }}
-          vercel-project-id: ${{ secrets.prj_NT3w3NZuSQA3NiImCVrGnyTNtdFs }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: ./
           prod: true
+
