@@ -1,4 +1,4 @@
-name: Node.js Security + Deploy
+name: DevSecOps Security & Deployment Pipeline
 
 on:
   push:
@@ -10,55 +10,53 @@ on:
 
 jobs:
   security-and-deploy:
+    name: Security Scan + Deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
-      - name: 📥 Checkout repository
+      # 1️⃣ Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
+      # 2️⃣ Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
+          cache: npm
 
-      - name: 📦 Install dependencies
-        run: npm install
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: npm ci
 
-      # =========================
-      # 1️⃣ Audit sécurité npm
-      # =========================
-      - name: 🔎 Run npm audit
+      # 4️⃣ Run lint
+      - name: Run Lint
+        run: npm run lint  true
+
+      # 5️⃣ Run tests
+      - name: Run Tests
+        run: npm test  true
+
+      # 6️⃣ Generate Human-Readable Security Report
+      - name: Generate HTML Security Report
         run: |
-          npm audit --json > npm-audit.json
-          npm audit || true
+          npm install -g npm-audit-html
+          npm audit --json > audit.json
+          npm-audit-html -i audit.json -o security-report.html
 
-      # =========================
-      # 2️⃣ Scan Snyk
-      # =========================
-      - name: 🔐 Install Snyk
-        run: npm install -g snyk
+          CRITICAL=$(jq '.metadata.vulnerabilities.critical' audit.json)
+          if [ "$CRITICAL" -gt 0 ]; then
+            echo "🚨 Critical vulnerabilities detected!"
+            exit 1
+          fi
 
-      - name: 🔐 Run Snyk test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: |
-          snyk test --json > snyk-report.json || true
-          snyk test || true
-
-      # =========================
-      # 3️⃣ Génération rapport HTML
-      # =========================
-      - name: 📄 Generate HTML report
-        run: |
-          npm install -g snyk-to-html
-          snyk-to-html -i snyk-report.json -o security-report.html
-
-      - name: 📤 Upload security report
+      # 7️⃣ Upload Security Report
+      - name: Upload Security Report
         uses: actions/upload-artifact@v4
         with:
           name: security-report
           path: security-report.html
-
       # =========================
       # 4️⃣ Déploiement Vercel
       # =========================
