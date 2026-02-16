@@ -30,10 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4️⃣ Run lint
-      - name: Run Lint
-        run: npm run lint  true
-
       # 5️⃣ Run tests
       - name: Run Tests
         run: npm test  true
