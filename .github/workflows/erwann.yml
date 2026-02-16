@@ -65,5 +65,5 @@ jobs:
       - name: 🚀 Deploy to Vercel
         if: github.ref == 'refs/heads/main'
         run: |
-          npm install -g vercel
-          vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --confirm
+              npm install -g vercel
+              vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
